@@ -1,0 +1,25 @@
+.layout {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+.content {
+	flex: 1;
+}
+.overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.4);
+	transition: 0.3s ease;
+	z-index: 100;
+}
+
+@media (max-width: 768px) {
+	body[data-route='/catalog'] header {
+		display: none !important;
+	}
+
+	body[data-route='/catalog'] footer {
+		display: none !important;
+	}
+}

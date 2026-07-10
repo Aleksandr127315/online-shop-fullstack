@@ -1,0 +1,191 @@
+.rev {
+	display: flex;
+	align-items: flex-start;
+	gap: 24px;
+}
+
+.commentsContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+
+	max-width: 566px;
+	width: 100%;
+
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+/* FORM */
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+
+	max-width: 320px;
+	width: 100%;
+
+	padding: 24px 20px;
+
+	background-color: var(--bg-light1);
+	border-radius: 8px;
+	box-sizing: border-box;
+}
+
+.formHead {
+	font-size: 22px;
+	line-height: 26px;
+	font-weight: 700;
+	color: var(--text-primary);
+}
+
+.formSend {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+/* INPUTS */
+
+.inputName,
+.inputComment {
+	display: flex;
+	flex-direction: column;
+
+	padding: 8px 14px;
+
+	background: var(--bg-white);
+	border: 1px solid var(--text-lines-day-secondary);
+	border-radius: 6px;
+}
+
+.inputComment {
+	height: 120px;
+}
+
+.inputLabel {
+	font-size: 12px;
+	line-height: 16px;
+	font-weight: 700;
+	margin-bottom: 4px;
+}
+
+.input {
+	border: none;
+	outline: none;
+
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 400;
+
+	background: transparent;
+}
+
+/* STARS */
+
+.grade {
+	display: flex;
+	gap: 4px;
+
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+/* CHECKBOX */
+
+.checkbox {
+	display: flex;
+	gap: 12px;
+}
+
+.checkboxInput {
+	appearance: none;
+
+	width: 20px;
+	height: 20px;
+
+	border-radius: 4px;
+	background: white;
+
+	cursor: pointer;
+	position: relative;
+	flex-shrink: 0;
+}
+
+.checkboxInput:checked {
+	background: var(--text-primary-green-day);
+}
+
+.checkboxInput:checked::after {
+	content: '';
+
+	position: absolute;
+
+	left: 6px;
+	top: 2px;
+
+	width: 5px;
+	height: 10px;
+
+	border: solid var(--text-white);
+	border-width: 0 2px 2px 0;
+
+	transform: rotate(45deg);
+}
+
+.checkboxText {
+	font-size: 12px;
+	line-height: 16px;
+	font-weight: 400;
+}
+/* COMMENT */
+
+.comment {
+	padding: 20px;
+	border-radius: 8px;
+	background-color: var(--bg-light1);
+}
+
+.commentHead {
+	display: flex;
+	justify-content: space-between;
+}
+
+.name {
+	font-weight: bold;
+	font-size: 18px;
+	line-height: 24px;
+}
+
+.commentText {
+	font-size: 18px;
+	line-height: 24px;
+	color: var(--text-primary);
+}
+
+/* BUTTON */
+
+.btn {
+	width: 100%;
+	height: 46px;
+
+	border: none;
+	border-radius: 4px;
+
+	background: var(--button-black);
+	color: var(--button-white);
+
+	font-size: 16px;
+	line-height: 22px;
+	font-weight: 500;
+
+	cursor: pointer;
+}
+@media (max-width: 690px) {
+	.form {
+		max-width: 100%;
+	}
+}

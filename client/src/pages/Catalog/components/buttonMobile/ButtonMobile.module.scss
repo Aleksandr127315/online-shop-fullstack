@@ -1,0 +1,35 @@
+.fixed {
+	display: none;
+	position: fixed;
+	right: 20px;
+	bottom: 18px;
+	z-index: 50;
+}
+
+.button {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	border-radius: 12px;
+
+	padding: 0 20px;
+	height: 48px;
+
+	border: none;
+
+	background: var(--text-primary-green-day);
+	color: #fff;
+
+	cursor: pointer;
+}
+
+.price {
+	font-size: 16px;
+	font-weight: 500;
+}
+
+@media (max-width: 768px) {
+	.fixed {
+		display: flex;
+	}
+}

@@ -1,0 +1,107 @@
+.popupInfo {
+	margin-bottom: 40px;
+}
+
+/* NAVIGATION */
+
+.nav {
+	display: flex;
+	gap: 32px;
+	border-bottom: 1px solid rgba(180, 190, 202, 1);
+	margin-bottom: 32px;
+}
+
+.navButton {
+	height: 60px;
+	padding: 4px 8px;
+	background: transparent;
+	border: none;
+	border-bottom: 3px solid transparent;
+
+	font-size: 18px;
+	line-height: 24px;
+	font-weight: 400;
+	text-align: center;
+
+	cursor: pointer;
+}
+
+.active {
+	border-bottom: 3px solid var(--text-primary-green-day);
+}
+
+/* DESCRIPTION TAB */
+
+.dis {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	max-width: 561px;
+}
+
+.string {
+	display: grid;
+	grid-template-columns: 120px 1fr;
+	gap: 12px;
+	align-items: start;
+}
+
+.head {
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 22px;
+}
+
+.text {
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 400;
+	color: rgba(41, 43, 50, 1);
+}
+
+/* ADDITIONAL TAB */
+
+.add {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	max-width: 561px;
+}
+
+/* REVIEWS TAB */
+
+/* TABLET */
+
+@media (max-width: 690px) {
+	.popupInfo {
+		margin: 0 20px 32px;
+	}
+
+	.nav {
+		justify-content: space-between;
+	}
+
+	.string {
+		grid-template-columns: 80px 1fr;
+	}
+
+	.rev {
+		flex-direction: column;
+	}
+
+	.form {
+		max-width: 100%;
+	}
+}
+
+/* MOBILE */
+
+@media (max-width: 450px) {
+	.nav {
+		gap: 0;
+	}
+
+	.navButton {
+		font-size: 12px;
+	}
+}
