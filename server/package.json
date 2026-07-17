@@ -5,18 +5,25 @@
     "main": "index.js",
     "scripts": {
         "start": "node --env-file=.env index.js",
-        "start:dev": "nodemon index.js"
+        "start:dev": "nodemon --exec \"node --env-file=.env\" index.js",
+        "prisma:generate": "prisma generate",
+        "prisma:pull": "prisma db pull",
+        "prisma:studio": "prisma studio"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "type": "commonjs",
     "dependencies": {
+        "@prisma/adapter-pg": "^7.8.0",
+        "@prisma/client": "^7.8.0",
+        "dotenv": "^17.4.2",
         "express": "^5.2.1",
         "pg": "^8.22.0"
     },
     "devDependencies": {
         "dotenv-cli": "^11.0.0",
-        "nodemon": "^3.1.14"
+        "nodemon": "^3.1.14",
+        "prisma": "^7.8.0"
     }
 }

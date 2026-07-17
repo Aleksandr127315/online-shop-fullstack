@@ -1,22 +1,19 @@
 const express = require('express');
-const sliderData = require('./imageSlider.json');
 const err = require('./error.json');
-const { Pool } = require('pg'); //библиотека для подключения к постгресу
+const { PrismaPg } = require('@prisma/adapter-pg');
+const { PrismaClient } = require('@prisma/client');
+const { getDatabaseUrl } = require('./lib/database-url');
 
-const pool = new Pool({
-    host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT),
-    database: process.env.DB_NAME,
-    user: process.env.DB_USER,
-});
+const adapter = new PrismaPg({ connectionString: getDatabaseUrl() });
+const prisma = new PrismaClient({ adapter });
 const app = express();
 const PORT = Number(process.env.PORT);
 app.use(express.json());
 
 app.get('/slider', async (req, res) => {
     try {
-        const result = await pool.query('SELECT * FROM products');
-        res.json(result.rows);
+        const products = await prisma.products.findMany();
+        res.json(products);
     } catch (e) {
         console.error(`Error:${e.message}`);
         res.status(500).json(err);
@@ -26,3 +23,11 @@ app.get('/slider', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
 });
+
+async function shutdown() {
+    await prisma.$disconnect();
+    process.exit(0);
+}
+
+process.on('SIGINT', shutdown);
+process.on('SIGTERM', shutdown);
