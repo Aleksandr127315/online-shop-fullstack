@@ -51,9 +51,9 @@ export const useProducts = (paramsInput = {}) => {
 				}
 
 				const query = params.toString();
-				const url = query ? `${PRODUCT_INFO_URL}&${query}` : PRODUCT_INFO_URL;
-
-				const res = await fetch(url);
+				// const url = query ? `${PRODUCT_INFO_URL}&${query}` : PRODUCT_INFO_URL;
+				// const res = await fetch(url);
+				const res = await fetch('http://localhost:3000/products');
 
 				if (!res.ok) {
 					const text = await res.text();
@@ -61,7 +61,8 @@ export const useProducts = (paramsInput = {}) => {
 				}
 				const data = await res.json();
 
-				setProducts(data.data || []);
+				setProducts(data || []);
+
 				setPagination(data.meta?.pagination || null);
 			} catch (e) {
 				setError(e.message);

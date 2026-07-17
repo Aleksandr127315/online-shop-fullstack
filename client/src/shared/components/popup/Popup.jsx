@@ -23,7 +23,7 @@ export const Popup = ({ selectedProduct, products, closePopup }) => {
 				closePopup={closePopup}
 			/>
 			<InfoPopup selectedProduct={selectedProduct} />
-			<SimilarPopup products={products} selectedProduct={selectedProduct} />
+			{/* <SimilarPopup products={products} selectedProduct={selectedProduct} /> */}
 		</section>
 	);
 };

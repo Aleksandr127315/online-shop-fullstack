@@ -21,7 +21,7 @@ export const useCartStore = create(
 								price: product.price,
 								weight: product.weight,
 								discountPercent: product.discountPercent,
-								image: product.image,
+								imageUrl: product.imageUrl,
 								maxStock: product.itemsInStock,
 								count: 1,
 							},

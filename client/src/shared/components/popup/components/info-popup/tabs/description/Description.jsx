@@ -7,10 +7,7 @@ export const Description = ({ selectedProduct }) => {
 			<div className={style.string}>
 				<span className={style.head}>Price:</span>
 
-				<p className={style.text}>
-					The product is weighted, the final cost will be calculated according
-					to its weight.
-				</p>
+				<p className={style.text}>{selectedProduct.price}$</p>
 			</div>
 
 			<div className={style.string}>

@@ -1,16 +1,10 @@
-import { BASE_URL } from '@/constants/constants';
 import style from './CartItem.module.scss';
 
 export const CartItem = ({ item, onAdd, onRemove, onDelete, isDisabled, finalPrice }) => {
 	return (
 		<div className={style.product__container}>
 			<div className={style.imageWrapper}>
-				<img
-					src={BASE_URL + item.image.url}
-					alt={item.title}
-					width={150}
-					height={150}
-				/>
+				<img src={item.imageUrl} alt={item.title} width={150} height={150} />
 
 				{item.discountPercent ? (
 					<div className={style.sale}>

@@ -1,4 +1,5 @@
 require('dotenv').config();
+const cors = require('cors');
 const express = require('express');
 const err = require('./error.json');
 const { PrismaPg } = require('@prisma/adapter-pg');
@@ -10,6 +11,11 @@ const prisma = new PrismaClient({ adapter });
 const app = express();
 const PORT = Number(process.env.PORT);
 app.use(express.json());
+app.use(
+    cors({
+        origin: 'http://localhost:5174',
+    }),
+);
 
 app.get('/ipod/price', async (req, res) => {
     try {
@@ -20,6 +26,19 @@ app.get('/ipod/price', async (req, res) => {
         });
         // where: { price: { lt: 100 } }, // TODO: поменять фильтр чтобы получить именно айпод
         res.json(product[0].price); // вернуть один продукт который нашелся по фильтру выше
+    } catch (e) {
+        console.error(`Error:${e.message}`);
+        res.status(500).json(err);
+    }
+});
+
+app.get('/products', async (req, res) => {
+    try {
+        const products = await prisma.products.findMany({
+            where: {},
+        });
+
+        res.json(products);
     } catch (e) {
         console.error(`Error:${e.message}`);
         res.status(500).json(err);

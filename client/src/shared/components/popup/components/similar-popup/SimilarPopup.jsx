@@ -25,7 +25,7 @@ export const SimilarPopup = ({ selectedProduct, products }) => {
 						<li key={item.id}>
 							<article className={style.product}>
 								<img
-									src={BASE_URL + item.image.url}
+									src={BASE_URL + item.imageUrl}
 									alt={item.title}
 									width="282px"
 									height="282px"
