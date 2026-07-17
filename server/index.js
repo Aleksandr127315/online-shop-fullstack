@@ -2,12 +2,7 @@ require('dotenv').config();
 const cors = require('cors');
 const express = require('express');
 const err = require('./error.json');
-const { PrismaPg } = require('@prisma/adapter-pg');
-const { PrismaClient } = require('@prisma/client');
-const { getDatabaseUrl } = require('./lib/database-url');
-
-const adapter = new PrismaPg({ connectionString: getDatabaseUrl() });
-const prisma = new PrismaClient({ adapter });
+const { prisma } = require('./src/db/prisma');
 const app = express();
 const PORT = Number(process.env.PORT);
 app.use(express.json());
@@ -28,7 +23,43 @@ app.get('/ipod/price', async (req, res) => {
         res.json(product[0].price); // вернуть один продукт который нашелся по фильтру выше
     } catch (e) {
         console.error(`Error:${e.message}`);
-        res.status(500).json(err);
+        res.status(500).json(err.productsLoadFailed);
+    }
+});
+
+app.get('/cart', async (req, res) => {
+    try {
+        const cart = await prisma.carts.findUnique({
+            where: {
+                user_id: 1,
+            },
+            include: {
+                cart_items: {
+                    include: {
+                        products: true,
+                    },
+                },
+            },
+        });
+        if (!cart) {
+            return res.status(404).json(err.cartNotFound);
+        }
+
+        const items = cart.cart_items.map((cartItem) => {
+            return {
+                cartItemId: cartItem.id,
+                id: cartItem.products.id,
+                title: cartItem.products.title,
+                price: cartItem.products.price,
+                imageUrl: cartItem.products.imageUrl,
+                count: cartItem.quantity,
+            };
+        });
+
+        return res.json({ id: cart.id, userId: cart.user_id, items });
+    } catch (e) {
+        console.error(`Error:${e.message}`);
+        res.status(500).json(err.cartLoadFailed);
     }
 });
 
@@ -41,7 +72,7 @@ app.get('/products', async (req, res) => {
         res.json(products);
     } catch (e) {
         console.error(`Error:${e.message}`);
-        res.status(500).json(err);
+        res.status(500).json(err.productsLoadFailed);
     }
 });
 
@@ -54,7 +85,7 @@ app.get('/imac/price', async (req, res) => {
         res.json(products); // вернуть один продукт который нашелся по фильтру выше
     } catch (e) {
         console.error(`Error:${e.message}`);
-        res.status(500).json(err);
+        res.status(500).json(err.productsLoadFailed);
     }
 });
 

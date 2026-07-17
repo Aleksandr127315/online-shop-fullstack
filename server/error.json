@@ -1,3 +1,4 @@
 {
-    "message": "Failed to load products"
+    "productsLoadFailed": "Failed to load products",
+    "cartNotFound": "Cart not found"
 }
