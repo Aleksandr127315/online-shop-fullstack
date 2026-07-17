@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "node --env-file=.env index.js",
-        "start:dev": "nodemon --exec \"node --env-file=.env\" index.js",
+        "start:dev": "nodemon index.js",
         "prisma:generate": "prisma generate",
         "prisma:pull": "prisma db pull",
         "prisma:studio": "prisma studio"
