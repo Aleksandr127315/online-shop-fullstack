@@ -1,4 +1,5 @@
 {
     "productsLoadFailed": "Failed to load products",
-    "cartNotFound": "Cart not found"
+    "cartNotFound": "Cart not found",
+    "cartLoadFailed": "Failed to load cart"
 }
